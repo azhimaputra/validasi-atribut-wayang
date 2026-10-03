@@ -206,20 +206,21 @@
     <div class="eyebrow">Validasi istilah &middot; gaya Surakarta</div>
     <h1>Penamaan Atribut Wayang</h1>
     <p class="pengantar">
-      Mohon kesediaan Bapak menamai bagian-bagian wayang pada <strong>14 gambar</strong> berikut.
-      Yang kami perlukan adalah <strong>istilah yang Bapak pakai sendiri</strong>, bukan istilah
-      dari buku. Sengaja tidak kami sediakan pilihan jawaban supaya tidak mengarahkan.
+      Dengan hormat, kami memohon kesediaan Bapak/Ibu untuk menamai bagian-bagian wayang
+      pada <strong>14 gambar</strong> berikut. Yang kami perlukan adalah
+      <strong>istilah yang Bapak/Ibu gunakan sendiri</strong>, bukan istilah yang bersumber
+      dari pustaka. Pilihan jawaban sengaja tidak kami sediakan agar penamaan tidak terarahkan.
     </p>
 
     <div class="aturan">
-      <p><strong>Kalau tidak yakin</strong>, tetap tulis dugaan Bapak lalu ketuk tombol <em>kurang yakin</em> di sebelah kanan. Jawaban ragu tetap berguna bagi kami.</p>
-      <p><strong>Kalau memang tidak tahu</strong> namanya, tulis tanda hubung <strong>-</strong> saja.</p>
-      <p><strong>Ketuk gambar</strong> untuk memperbesar. Jawaban tersimpan sendiri di HP, jadi boleh ditinggal dulu lalu dilanjutkan.</p>
+      <p><strong>Apabila kurang yakin</strong>, mohon istilah yang paling mendekati tetap dituliskan, kemudian tombol <em>kurang yakin</em> di sebelah kanan ditekan. Jawaban yang disertai keraguan tetap bermanfaat bagi kami.</p>
+      <p><strong>Apabila istilahnya tidak diketahui</strong>, mohon dituliskan tanda hubung ( <strong>-</strong> ).</p>
+      <p><strong>Gambar dapat diperbesar</strong> dengan menekannya. Jawaban tersimpan secara otomatis pada peramban, sehingga pengisian dapat dihentikan sementara dan dilanjutkan kemudian.</p>
     </div>
   </header>
 
   <div class="bar">
-    <div class="bar-teks"><b id="angka">0</b> / 44 terjawab</div>
+    <div class="bar-teks">Terjawab <b id="angka">0</b> dari 44</div>
     <div class="rel"><i id="rel"></i></div>
   </div>
 
@@ -298,7 +299,7 @@
     img.loading = s.n > 2 ? "lazy" : "eager"; img.decoding = "async";
     tombolGambar.appendChild(img);
     var tip = document.createElement("span");
-    tip.className = "petunjuk-zoom"; tip.textContent = "ketuk untuk perbesar";
+    tip.className = "petunjuk-zoom"; tip.textContent = "tekan untuk memperbesar";
     tombolGambar.appendChild(tip);
     tombolGambar.addEventListener("click", function(){ bukaLightbox(s); });
     sec.appendChild(tombolGambar);
@@ -335,7 +336,7 @@
       var inp = document.createElement("input");
       inp.type = "text"; inp.id = "j" + kunci.replace("|","-");
       inp.autocapitalize = "none"; inp.autocomplete = "off"; inp.spellcheck = false;
-      inp.placeholder = "nama " + nama.toLowerCase() + " menurut Bapak";
+      inp.placeholder = "istilah untuk " + nama.toLowerCase() + " menurut Bapak/Ibu";
       inp.value = simpanan.jawab[kunci] || "";
       inp.addEventListener("input", function(){
         var v = inp.value.trim();
@@ -350,10 +351,10 @@
     kc.className = "catatan";
     var kcl = document.createElement("label");
     kcl.className = "nama-label"; kcl.htmlFor = "c" + s.n;
-    kcl.textContent = "Catatan untuk gambar " + s.n + " (boleh dikosongkan)";
+    kcl.textContent = "Catatan untuk gambar " + s.n + " (tidak wajib diisi)";
     var kct = document.createElement("textarea");
     kct.id = "c" + s.n; kct.rows = 2;
-    kct.placeholder = "misalnya: bentuknya mirip X, tetapi di Surakarta disebut Y";
+    kct.placeholder = "contoh: bentuknya menyerupai X, namun di Surakarta disebut Y";
     kct.value = simpanan.catatan[s.n] || "";
     kct.addEventListener("input", function(){
       var v = kct.value.trim();
@@ -384,12 +385,12 @@
     var sisa = TOTAL - n;
     elSisa.textContent = "";
     if (sisa === 0) {
-      elSisa.textContent = "Semua pertanyaan sudah terisi. Silakan kirim.";
+      elSisa.textContent = "Seluruh pertanyaan telah terisi. Jawaban siap dikirim.";
     } else {
-      elSisa.appendChild(document.createTextNode("Masih ada "));
+      elSisa.appendChild(document.createTextNode("Terdapat "));
       var kuat = document.createElement("b"); kuat.textContent = String(sisa);
       elSisa.appendChild(kuat);
-      elSisa.appendChild(document.createTextNode(" pertanyaan kosong. Boleh dikirim apa adanya."));
+      elSisa.appendChild(document.createTextNode(" pertanyaan yang belum terisi. Jawaban tetap dapat dikirim apa adanya."));
     }
   }
   hitung();
@@ -430,7 +431,7 @@
         var kunci = s.n + "|" + i;
         var isi = (simpanan.jawab[kunci] || "").trim();
         var tanda = simpanan.ragu[kunci] ? "  (kurang yakin)" : "";
-        b.push(nama + ": " + (isi || "(kosong)") + tanda);
+        b.push(nama + ": " + (isi || "(belum diisi)") + tanda);
       });
       var c = (simpanan.catatan[s.n] || "").trim();
       if (c) b.push("Catatan: " + c);
